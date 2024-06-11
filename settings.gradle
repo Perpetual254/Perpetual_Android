@@ -1,9 +1,9 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
+gradlePluginPortal()
+google()
+mavenCentral()
+}
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Ezra-mvvm"
+rootProject.name = "Perpetual_Android"
 include ':app'

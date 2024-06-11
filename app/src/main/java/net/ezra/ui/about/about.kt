@@ -27,7 +27,7 @@ fun AboutScreen(navController: NavHostController) {
     Column {
         Text(text = "about")
 
-        Text(text = stringResource(id = R.string.apen))
+        Text(text = stringResource(id = R.string.prayer))
 
         Text(
             modifier = Modifier

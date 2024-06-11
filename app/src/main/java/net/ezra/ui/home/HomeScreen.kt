@@ -14,9 +14,12 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.BottomNavigation
 //noinspection UsingMaterialAndMaterial3Libraries
@@ -41,7 +44,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -74,174 +79,74 @@ fun HomeScreen(navController: NavHostController) {
 
         }
 
+
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(
-                title = {
-                    Text(text = stringResource(id = R.string.apen))
-                },
-                navigationIcon = @Composable {
-                    if (!isDrawerOpen) {
-                        IconButton(onClick = { isDrawerOpen = true }) {
-                            Icon(
-                                Icons.Default.Menu,
-                                contentDescription = "Menu",
-                                tint = Color.White
+                CenterAlignedTopAppBar(
+                    title = {
+                        Text(text = stringResource(id = R.string.prayer))
+                    },
+                    navigationIcon = @Composable {
+                        if (!isDrawerOpen) {
+                            IconButton(onClick = { isDrawerOpen = true }) {
+                                Icon(
+                                    Icons.Default.Menu,
+                                    contentDescription = "Menu",
+                                    tint = Color.White
                                 )
+                            }
                         }
-                    }
-                },
+                    },
 
-                actions = {
-                    IconButton(onClick = {
-                        navController.navigate(ROUTE_LOGIN) {
-                            popUpTo(ROUTE_HOME) { inclusive = true }
+                    actions = {
+                        IconButton(onClick = {
+                            navController.navigate(ROUTE_LOGIN) {
+                                popUpTo(ROUTE_HOME) { inclusive = true }
+                            }
+
+                        }) {
+                            Icon(
+                                imageVector = Icons.Filled.AccountCircle,
+                                contentDescription = null,
+                                tint = Color.White
+                            )
                         }
+                    },
 
-                    }) {
-                        Icon(
-                            imageVector = Icons.Filled.AccountCircle,
-                            contentDescription = null,
-                            tint = Color.White
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = Color(0xff010601),
+                        titleContentColor = Color.White,
+
                         )
-                    }
-                },
-
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xff0FB06A),
-                    titleContentColor = Color.White,
 
                 )
-
-            )
-        },
+            },
 
         content = @Composable {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .clickable {
-                        if (isDrawerOpen) {
-                            isDrawerOpen = false
-                        }
-                    }
-            ) {
+
+              Column(
+                 modifier = Modifier
+                      .fillMaxSize()
+              ) {
+
+                 Image(painter = painterResource(id = R.drawable.folded) ,
+                     contentDescription = null,
+                     contentScale = ContentScale.Fit,
+                     modifier = Modifier
+                         .size(1500.dp)
+                 )
 
 
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color(0xff9AEDC9)),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-
-                    Text(
-                        text = stringResource(id = R.string.call),
-                        fontSize = 20.sp,
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .clickable {
-
-                                val intent = Intent(Intent.ACTION_DIAL)
-                                intent.data = Uri.parse("tel:+254796759850")
-
-                                callLauncher.launch(intent)
-                            }
-                    )
-
-                    Text(
-                        text = stringResource(id = R.string.developer),
-                        fontSize = 20.sp,
-                    )
-
-                    Spacer(modifier = Modifier.height(15.dp))
-
-                    Text(
-                        modifier = Modifier
-
-                            .clickable {
-                                navController.navigate(ROUTE_LOGIN) {
-                                    popUpTo(ROUTE_HOME) { inclusive = true }
-                                }
-                            },
-                        text = "Login Here",
-                        textAlign = TextAlign.Center,
-                        fontSize = 20.sp,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-
-
-
-                    Text(
-                        modifier = Modifier
-
-                            .clickable {
-                                navController.navigate(ROUTE_ADD_PRODUCT) {
-                                    popUpTo(ROUTE_HOME) { inclusive = true }
-                                }
-                            },
-                        text = "Add Products",
-                        textAlign = TextAlign.Center,
-                        fontSize = 20.sp,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-
-                    Text(
-                        modifier = Modifier
-
-                            .clickable {
-                                navController.navigate(ROUTE_ADD_STUDENTS) {
-                                    popUpTo(ROUTE_HOME) { inclusive = true }
-                                }
-                            },
-                        text = "Add Students",
-                        textAlign = TextAlign.Center,
-                        fontSize = 20.sp,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-
-                    Text(
-                        modifier = Modifier
-
-                            .clickable {
-                                navController.navigate(ROUTE_VIEW_PROD) {
-                                    popUpTo(ROUTE_HOME) { inclusive = true }
-                                }
-                            },
-                        text = "view Products",
-                        textAlign = TextAlign.Center,
-                        fontSize = 20.sp,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-
-
-                    
-                    Spacer(modifier = Modifier.height(15.dp))
-                    
-                    Text(
-                        text = "You're welcome",
-                        fontSize = 30.sp,
-                        color = Color.White
-                    )
-
-
-
-                }
-
-            }
+              }
 
         },
 
         bottomBar = { BottomBar(navController = navController) }
 
-
-
-
-
-
-
     )
+
+
+
 
     AnimatedDrawer(
         isOpen = isDrawerOpen,
@@ -304,14 +209,9 @@ fun BottomBar(navController: NavHostController) {
         },
             label = { Text(text = "Home",color =  Color.White) }, selected = (selectedIndex.value == 0), onClick = {
 
-            })
-
-        BottomNavigationItem(icon = {
-            Icon(imageVector = Icons.Default.Favorite,"",tint = Color.White)
-        },
-            label = { Text(text = "Favorite",color =  Color.White) }, selected = (selectedIndex.value == 1), onClick = {
-
-            })
+            }
+        )
+        
 
         BottomNavigationItem(icon = {
             Icon(imageVector = Icons.Default.Person, "",tint = Color.White)
@@ -326,7 +226,8 @@ fun BottomBar(navController: NavHostController) {
                     popUpTo(ROUTE_HOME) { inclusive = true }
                 }
 
-            })
+            }
+        )
 
     }
 }
