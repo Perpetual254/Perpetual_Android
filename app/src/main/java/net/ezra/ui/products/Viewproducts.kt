@@ -70,7 +70,7 @@ data class Product(
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProductListScreen(navController: NavController, products: List<Product>) {
+fun ProductListScreen(navController: NavController, product: List<Product>) {
     var isLoading by remember { mutableStateOf(true) }
     var productList by remember { mutableStateOf(emptyList<Product>()) }
     var displayedProductCount by remember { mutableStateOf(1) }
@@ -87,7 +87,7 @@ fun ProductListScreen(navController: NavController, products: List<Product>) {
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text(text = "Products",fontSize = 30.sp, color = Color.White)
+                    Text(text = "Prayers",fontSize = 30.sp, color = Color.White)
                 },
                 navigationIcon = {
                     IconButton(onClick = {
@@ -102,8 +102,8 @@ fun ProductListScreen(navController: NavController, products: List<Product>) {
                 },
 
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xff0FB06A),
-                    titleContentColor = Color.White,
+                    containerColor = Color(0xff045d25),
+                    titleContentColor = Color.Black,
 
                     )
 
@@ -113,7 +113,7 @@ fun ProductListScreen(navController: NavController, products: List<Product>) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xff9AEDC9))
+                    .background(Color(0xff24683d))
             ) {
                 if (isLoading) {
                     // Progress indicator

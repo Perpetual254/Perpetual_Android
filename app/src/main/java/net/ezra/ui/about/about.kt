@@ -33,9 +33,8 @@ fun AboutScreen(navController: NavHostController) {
             modifier = Modifier
 
                 .clickable {
-                    navController.navigate(ROUTE_HOME) {
-                        popUpTo(ROUTE_ABOUT) { inclusive = true }
-                    }
+                    navController.navigate(ROUTE_HOME)
+
                 },
             text = "Home",
             textAlign = TextAlign.Center,

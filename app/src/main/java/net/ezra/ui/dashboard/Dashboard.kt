@@ -113,7 +113,7 @@ fun DashboardScreen(navController: NavHostController)  {
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text(text = "Dashboard", color = Color.White, fontSize = 30.sp)
+                    Text(text = "Dashboard", color = Color.Black, fontSize = 30.sp)
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color(0xff0FB06A),

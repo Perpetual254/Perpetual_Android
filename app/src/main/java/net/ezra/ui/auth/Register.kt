@@ -1,6 +1,7 @@
 package net.ezra.ui.auth
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -11,13 +12,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
 import net.ezra.navigation.ROUTE_LOGIN
 import net.ezra.navigation.ROUTE_REGISTER
 
-
+//@Preview
 @Composable
 fun SignUpScreen(navController: NavController, onSignUpSuccess: () -> Unit) {
     var email by remember { mutableStateOf("") }
@@ -31,6 +33,7 @@ fun SignUpScreen(navController: NavController, onSignUpSuccess: () -> Unit) {
 
     Column(
         modifier = Modifier
+            .background(Color.Cyan)
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,

@@ -19,7 +19,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.BottomNavigation
 //noinspection UsingMaterialAndMaterial3Libraries
@@ -32,6 +34,9 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -70,14 +75,19 @@ data class Screen(val title: String, val icon: Int)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "ResourceAsColor")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavHostController) {
+fun HomeScreen(navController: NavHostController,
+            //   backgroundImageResId:Int=R.drawable.church,
+            //   content:@Composable()Unit={}
+
+
+) {
 
     var isDrawerOpen by remember { mutableStateOf(false) }
 
     val callLauncher: ManagedActivityResultLauncher<Intent, ActivityResult> =
         rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) { _ ->
 
-        }
+    }
 
 
     Scaffold(
@@ -124,24 +134,65 @@ fun HomeScreen(navController: NavHostController) {
 
         content = @Composable {
 
-              Column(
-                 modifier = Modifier
+
+              Box(
+                  modifier = Modifier
                       .fillMaxSize()
+                     //.verticalScroll(rememberScrollState())
               ) {
 
-                 Image(painter = painterResource(id = R.drawable.folded) ,
-                     contentDescription = null,
-                     contentScale = ContentScale.Fit,
-                     modifier = Modifier
-                         .size(1500.dp)
-                 )
+                  Image(
+                      painter = painterResource(id = R.drawable.church),
+                      contentDescription = "",
+                      contentScale = ContentScale.Crop,
+                      modifier = Modifier.fillMaxSize()
+                  )
+
+                  Column(
+                      modifier = Modifier
+                          .fillMaxSize()
+                          .padding(16.dp),
+                      verticalArrangement = Arrangement.Bottom,
+                      horizontalAlignment = Alignment.CenterHorizontally
+
+                  ) {
+
+                      Button(
+                          onClick = {
+                              navController.navigate(ROUTE_LOGIN) {
+                                  popUpTo(ROUTE_HOME) { inclusive = true }
+                              }
+
+                          },
+                          shape = RoundedCornerShape(15.dp),
+                          colors = ButtonDefaults.buttonColors(Color.White)
+
+                      ) {
+                          Text(
+                              text = "Get Started",
+                              color = Color.Black
+                          )
+                      }
+
+                  }
 
 
               }
 
+
+
+
+
+
+
+
+
+
+
+            
         },
 
-        bottomBar = { BottomBar(navController = navController) }
+      //  bottomBar = { BottomBar(navController = navController) }
 
     )
 
@@ -170,20 +221,43 @@ fun AnimatedDrawer(isOpen: Boolean, onClose: () -> Unit) {
         color = Color.LightGray,
 //        elevation = 16.dp
     ) {
-        Column {
+        Column(
+            modifier = Modifier
+                .padding(vertical = 4.dp)
+                .padding(start = 5.dp)
+        ) {
             Text(
-                text = "Drawer Item 1"
+                text = "Morning Prayers"
 
             )
+
+            Spacer(
+                modifier =Modifier
+                    .height(2.dp)
+            )
+
             Text(
-                text = "Drawer Item 2"
+                text = "Meal Prayers"
+            )
+
+            Spacer(
+                modifier =Modifier
+                    .height(2.dp)
             )
             Text(
-                text = "Drawer Item 3",
+                text = "Evening Prayers"
+            )
+
+            Spacer(
+                modifier =Modifier
+                    .height(2.dp)
+            )
+
+            Text(
+                text = " Rozary",
                 modifier = Modifier.clickable {  }
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Text(text = stringResource(id = R.string.developer))
 
         }
     }

@@ -48,16 +48,19 @@ fun SplashScreen(navController: NavHostController) {
     // Image
 
     Column (
+        modifier = Modifier
+            .fillMaxSize()
+        ,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
 
-        Image(painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Logo",
+        Image(painter = painterResource(id = R.drawable.pray),
+            contentDescription = "",
             modifier = Modifier.scale(scale.value)
         )
 
-        Text("Apen Softwares")
+        Text("Welcome To Catholic Prayers")
 
 
 

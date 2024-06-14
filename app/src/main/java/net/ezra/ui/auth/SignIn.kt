@@ -3,6 +3,7 @@ package net.ezra.ui.auth
 
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -17,6 +18,7 @@ import androidx.navigation.NavController
 import com.google.firebase.auth.FirebaseAuth
 import net.ezra.navigation.ROUTE_DASHBOARD
 import net.ezra.navigation.ROUTE_LOGIN
+import net.ezra.navigation.ROUTE_PRAYER
 import net.ezra.navigation.ROUTE_REGISTER
 
 @Composable
@@ -33,6 +35,7 @@ fun LoginScreen(navController: NavController, onLoginSuccess: () -> Unit) {
 
     Column(
         modifier = Modifier
+            .background(Color(0xff045d25))
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -77,7 +80,7 @@ fun LoginScreen(navController: NavController, onLoginSuccess: () -> Unit) {
                             .addOnCompleteListener { task ->
                                 isLoading = false
                                 if (task.isSuccessful) {
-                                    navController.navigate(ROUTE_DASHBOARD)
+                                    navController.navigate(ROUTE_PRAYER)
                                 } else {
                                     error = task.exception?.message ?: "Login failed"
                                 }
@@ -97,7 +100,7 @@ fun LoginScreen(navController: NavController, onLoginSuccess: () -> Unit) {
                             popUpTo(ROUTE_LOGIN) { inclusive = true }
                         }
                     },
-                text = "go to register",
+                text = "Dont have an account? SIGN IN",
                 textAlign = TextAlign.Center,
                 color = androidx.compose.material3.MaterialTheme.colorScheme.onSurface
             )

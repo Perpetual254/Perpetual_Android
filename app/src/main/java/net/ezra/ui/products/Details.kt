@@ -50,7 +50,7 @@ fun ProductDetailScreen(navController: NavController, productId: String) {
 
     LaunchedEffect(Unit) {
         fetchProduct(productId) { fetchedProduct ->
-            product = fetchedProduct
+            product= fetchedProduct
         }
     }
 

@@ -15,6 +15,8 @@ import net.ezra.ui.auth.SignUpScreen
 import net.ezra.ui.dashboard.DashboardScreen
 //import net.ezra.ui.auth.SignupScreen
 import net.ezra.ui.home.HomeScreen
+import net.ezra.ui.prayer.Prayer
+import net.ezra.ui.prayerdetails.PrayerDetails
 import net.ezra.ui.products.AddProductScreen
 import net.ezra.ui.products.ProductDetailScreen
 import net.ezra.ui.products.ProductListScreen
@@ -26,7 +28,7 @@ import net.ezra.ui.students.Students
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUTE_HOME
+    startDestination: String = ROUTE_SPLASH
 
 
 ) {
@@ -91,7 +93,9 @@ fun AppNavHost(
             ProductListScreen(navController = navController, products = listOf() )
         }
 
-
+//        composable(ROUTE_PRAYERS) {
+//           PrayerScreen(navController = navController)
+//        }
 
         composable("productDetail/{productId}") { backStackEntry ->
             val productId = backStackEntry.arguments?.getString("productId") ?: ""
@@ -99,6 +103,9 @@ fun AppNavHost(
         }
 
 
+        composable(ROUTE_PRAYER) {
+            Prayer(navController=navController)
+        }
 
 
 
