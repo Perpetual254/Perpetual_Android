@@ -15,6 +15,9 @@ const val ROUTE_DASHBOARD = "dashboard"
 const val ROUTE_ADD_PRODUCT = "add_product"
 const val ROUTE_VIEW_PROD = "view_prod"
 const val ROUTE_PRAYER = "PrayerScreen"
+const val ROUTE_UPDATING = "update_prayer"
+const val ROUTE_LOGOUT = "logging out "
+
 //const val ROUTE_PRAYER_DETAILS="prayer details screen"
 
 
