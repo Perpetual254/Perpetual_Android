@@ -108,6 +108,17 @@ fun AppNavHost(
         }
 
 
+        composable(ROUTE_UPDATING) { backStackEntry ->
+            val prayerId = backStackEntry.arguments?.getString("productId") ?: ""
+            updatingScreen(navController, prayerId,PrayersViewModel())
+        }
+
+
+        composable(ROUTE_LOGOUT) {
+            logout(navController=navController)
+        }
+
+
 
 
 
